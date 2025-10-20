@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Real-Time Sports Stat Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Real-Time Sports Stat Tracker</h1>
+        <p class="subtitle">Live football stats + ML next-goal prediction</p>
+      </header>
+
+      <section class="stats">
+        <div class="stat">
+          <span class="label">Mode</span>
+          <span id="mode">-</span>
+        </div>
+        <div class="stat">
+          <span class="label">Home Goals</span>
+          <span id="homeGoals">0</span>
+        </div>
+        <div class="stat">
+          <span class="label">Away Goals</span>
+          <span id="awayGoals">0</span>
+        </div>
+        <div class="stat">
+          <span class="label">Home Possession</span>
+          <span id="homePossession">0</span>%
+        </div>
+        <div class="stat">
+          <span class="label">Away Possession</span>
+          <span id="awayPossession">0</span>%
+        </div>
+        <div class="stat highlight">
+          <span class="label">P(Home scores next)</span>
+          <span id="prob">0.00</span>
+        </div>
+      </section>
+
+      <section class="plot">
+        <img id="plot" src="/plot.png" alt="Live plot" />
+      </section>
+
+      <footer>
+        <p>
+          Tip: set <code>FOOTBALL_DATA_API_TOKEN</code> and <code>MATCH_ID</code> env vars to use
+          live API. Otherwise, demo mode simulates stats.
+        </p>
+      </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+  </html>
+
+
