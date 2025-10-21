@@ -15,6 +15,14 @@
 
       <section class="stats">
         <div class="stat">
+          <span class="label">Home Team</span>
+          <span id="homeTeam">-</span>
+        </div>
+        <div class="stat">
+          <span class="label">Away Team</span>
+          <span id="awayTeam">-</span>
+        </div>
+        <div class="stat">
           <span class="label">Mode</span>
           <span id="mode">-</span>
         </div>
@@ -49,11 +57,13 @@
           Tip: set <code>FOOTBALL_DATA_API_TOKEN</code> and <code>MATCH_ID</code> env vars to use
           live API. Otherwise, demo mode simulates stats.
         </p>
+        <p>Last updated: <span id="lastUpdated">-</span></p>
       </footer>
     </div>
 
     <script src="/static/app.js"></script>
   </body>
   </html>
+
 
 

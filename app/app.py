@@ -91,8 +91,9 @@ def _football_data_fetch(match_id: str, token: str) -> Tuple[Dict, str]:
         if resp.status_code != 200:
             return _demo_fetch(), "demo"
         data = resp.json()
-        # Basic score extraction
-        score = data.get("match", data).get("score", {})
+        # Basic score extraction and team names
+        match_obj = data.get("match", data)
+        score = match_obj.get("score", {})
         full_time = score.get("fullTime", {})
         home_goals = (
             full_time.get("home")
@@ -104,6 +105,8 @@ def _football_data_fetch(match_id: str, token: str) -> Tuple[Dict, str]:
             if full_time
             else score.get("away", 0)
         ) or 0
+        home_team_name = (match_obj.get("homeTeam") or {}).get("name")
+        away_team_name = (match_obj.get("awayTeam") or {}).get("name")
 
         # Possession is not guaranteed; simulate if missing
         home_possession = None
@@ -127,6 +130,8 @@ def _football_data_fetch(match_id: str, token: str) -> Tuple[Dict, str]:
                 "awayGoals": int(away_goals),
                 "homePossession": float(round(home_possession, 2)),
                 "awayPossession": float(round(away_possession, 2)),
+                "homeTeamName": home_team_name or "Home",
+                "awayTeamName": away_team_name or "Away",
             },
             "live",
         )
@@ -161,6 +166,8 @@ def _demo_fetch() -> Dict:
         "awayGoals": _demo_state["awayGoals"],
         "homePossession": round(_demo_state["homePossession"], 2),
         "awayPossession": round(100 - _demo_state["homePossession"], 2),
+        "homeTeamName": "Home",
+        "awayTeamName": "Away",
     }
 
 
@@ -256,5 +263,6 @@ def create_app() -> Flask:
         return send_file(buf, mimetype="image/png")
 
     return app
+
 
 
