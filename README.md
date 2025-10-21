@@ -78,3 +78,14 @@ If calls fail or rate limit is reached, the app automatically uses demo mode.
 - Relevant: Sports and data engineering showcase ready for a portfolio
 
 
+## Deploy on Render (free)
+
+1) Connect repository `waynekuvi/sports-stat-tracker`.
+2) Build command: `pip install -r requirements.txt`
+3) Start command: `gunicorn -w 2 -b 0.0.0.0:$PORT app.app:create_app()`
+4) Environment variables:
+   - `PYTHON_VERSION=3.11.9`  ← Render requires major.minor.patch
+   - `FOOTBALL_DATA_API_TOKEN=YOUR_TOKEN`
+   - `MATCH_ID=12345`
+
+

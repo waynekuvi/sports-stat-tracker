@@ -7,7 +7,7 @@ services:
     startCommand: gunicorn -w 2 -b 0.0.0.0:$PORT app.app:create_app()
     envVars:
       - key: PYTHON_VERSION
-        value: 3.11
+        value: 3.11.9
       - key: FOOTBALL_DATA_API_TOKEN
         sync: false
       - key: MATCH_ID
